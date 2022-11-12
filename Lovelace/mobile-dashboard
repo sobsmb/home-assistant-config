@@ -1,0 +1,598 @@
+type: vertical-stack
+cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: <ha-icon icon="mdi:account-multiple"></ha-icon> Family
+        style: |
+          ha-card { 
+            #background: rgba(0,0,0,0);
+            font-size: 20px;
+          }
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: person.jason
+            aspect_ratio: 2/1
+            show_name: false
+            show_icon: false
+            styles:
+              card:
+                - padding: 4%
+                - background-image: url("/local/jason_bitmoji_1.png")
+                - background-size: 50%
+                - background-repeat: no-repeat
+                - background-position: top center
+              custom_fields:
+                location:
+                  - text-transform: capitalize
+                  - position: absolute
+                  - left: 4%
+                  - top: 4%
+                  - color: >-
+                      [[[ if (states["person.jason"].state == "not_home") return
+                      "#e45649"; else return "#50A14F"; ]]]
+                ringer:
+                  - text-transform: capitalize
+                  - position: absolute
+                  - left: 15%
+                  - top: 4%
+                battery:
+                  - align-self: right
+                  - position: absolute
+                  - right: 4%
+                  - top: 4%
+                  - color: >-
+                      [[[ if (states["sensor.oneplus_8_pro_battery_level"].state
+                      <= 30) return "#e45649"; if
+                      (states["sensor.oneplus_8_pro_battery_level"].state <= 50)
+                      return "#ffa229"; else return "#50A14F"; ]]]
+                steps:
+                  - align-self: right
+                  - position: absolute
+                  - right: 4%
+                  - bottom: 4%
+            custom_fields:
+              location: |
+                [[[
+                  if (states["binary_sensor.jason_driving"].state == "on")
+                    return `<ha-icon
+                      icon="mdi:car-side"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.jason"].state == "not_home")
+                    return `<ha-icon
+                      icon="mdi:home-export-outline"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.jason"].state == "Map Your Show")
+                    return `<ha-icon
+                      icon="mdi:office-building"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  else 
+                    return `<ha-icon
+                      icon="mdi:home"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                ]]]
+              ringer: |
+                [[[
+                  if (states["sensor.oneplus_8_pro_ringer_mode"].state == "normal")
+                    return `<ha-icon
+                      icon="mdi:bell-ring"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["sensor.oneplus_8_pro_ringer_mode"].state == "vibrate")
+                    return `<ha-icon
+                      icon="mdi:vibrate"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  else 
+                    return `<ha-icon
+                      icon="mdi:bell-off-outline"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                ]]]
+              battery: |
+                [[[
+                  if (states["sensor.oneplus_8_pro_battery_state"].state == "charging")
+                    return `<ha-icon
+                      icon="mdi:battery-charging"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 10)
+                    return `<ha-icon
+                      icon="mdi:battery-10"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 20)
+                    return `<ha-icon
+                      icon="mdi:battery-20"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 30)
+                    return `<ha-icon
+                      icon="mdi:battery-30"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 40)
+                    return `<ha-icon
+                      icon="mdi:battery-40"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 50)
+                    return `<ha-icon
+                      icon="mdi:battery-50"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 60)
+                    return `<ha-icon
+                      icon="mdi:battery-60"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 70)
+                    return `<ha-icon
+                      icon="mdi:battery-70"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 80)
+                    return `<ha-icon
+                      icon="mdi:battery-80"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  if (states["sensor.oneplus_8_pro_battery_level"].state <= 90)
+                    return `<ha-icon
+                      icon="mdi:battery-90"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                  else
+                    return `<ha-icon
+                      icon="mdi:battery"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_battery_level'].state}%</span>`
+                ]]]
+              steps: |
+                [[[
+                  if (states["sensor.oneplus_8_pro_steps_sensor"].state == "")
+                    return `<ha-icon
+                      icon="mdi:shoe-print"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>0</span>`
+                  else
+                    return `<ha-icon
+                      icon="mdi:shoe-print"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.oneplus_8_pro_steps_sensor'].state}</span>`
+                ]]]
+          - type: custom:button-card
+            entity: person.sherri
+            aspect_ratio: 2/1
+            show_name: false
+            show_icon: false
+            styles:
+              card:
+                - padding: 4%
+                - background-image: url("/local/sherri_bitmoji_1.png")
+                - background-size: 50%
+                - background-repeat: no-repeat
+                - background-position: top center
+              custom_fields:
+                location:
+                  - text-transform: capitalize
+                  - position: absolute
+                  - left: 4%
+                  - top: 4%
+                  - color: >-
+                      [[[ if (states["person.sherri"].state == "not_home")
+                      return "#e45649"; else return "#50A14F"; ]]]
+                ringer:
+                  - text-transform: capitalize
+                  - position: absolute
+                  - left: 15%
+                  - top: 4%
+                battery:
+                  - align-self: right
+                  - position: absolute
+                  - right: 4%
+                  - top: 4%
+                  - color: >-
+                      [[[ if (states["sensor.in2015_battery_level"].state <= 30)
+                      return "#e45649"; if
+                      (states["sensor.in2015_battery_level"].state <= 50) return
+                      "#ffa229"; else return "#50A14F"; ]]]
+                steps:
+                  - align-self: right
+                  - position: absolute
+                  - right: 4%
+                  - bottom: 4%
+            custom_fields:
+              location: |
+                [[[
+                  if (states["binary_sensor.sherri_driving"].state == "on")
+                    return `<ha-icon
+                      icon="mdi:car-side"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.sherri"].state == "not_home")
+                    return `<ha-icon
+                      icon="mdi:home-export-outline"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.sherri"].state == "Tri-Health")
+                    return `<ha-icon
+                      icon="mdi:briefcase"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  else 
+                    return `<ha-icon
+                      icon="mdi:home"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                ]]]
+              ringer: |
+                [[[
+                  if (states["sensor.in2015_ringer_mode"].state == "normal")
+                    return `<ha-icon
+                      icon="mdi:bell-ring"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["sensor.in2015_ringer_mode"].state == "vibrate")
+                    return `<ha-icon
+                      icon="mdi:vibrate"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  else 
+                    return `<ha-icon
+                      icon="mdi:bell-off-outline"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                ]]]
+              battery: |
+                [[[
+                  if (states["sensor.in2015_battery_state"].state == "charging")
+                    return `<ha-icon
+                      icon="mdi:battery-charging"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 10)
+                    return `<ha-icon
+                      icon="mdi:battery-10"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 20)
+                    return `<ha-icon
+                      icon="mdi:battery-20"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 30)
+                    return `<ha-icon
+                      icon="mdi:battery-30"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 40)
+                    return `<ha-icon
+                      icon="mdi:battery-40"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 50)
+                    return `<ha-icon
+                      icon="mdi:battery-50"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 60)
+                    return `<ha-icon
+                      icon="mdi:battery-60"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 70)
+                    return `<ha-icon
+                      icon="mdi:battery-70"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 80)
+                    return `<ha-icon
+                      icon="mdi:battery-80"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  if (states["sensor.in2015_battery_level"].state <= 90)
+                    return `<ha-icon
+                      icon="mdi:battery-90"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                  else
+                    return `<ha-icon
+                      icon="mdi:battery"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_battery_level'].state}%</span>`
+                ]]]
+              steps: |
+                [[[
+                  if (states["sensor.in2015_steps_sensor"].state == "")
+                    return `<ha-icon
+                      icon="mdi:shoe-print"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>0</span>`
+                  else
+                    return `<ha-icon
+                      icon="mdi:shoe-print"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.in2015_steps_sensor'].state}</span>`
+                ]]]
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: person.justin
+            aspect_ratio: 2/1
+            show_name: false
+            show_icon: false
+            styles:
+              card:
+                - padding: 4%
+                - background-image: url("/local/justin_bitmoji_1.png")
+                - background-size: 50%
+                - background-repeat: no-repeat
+                - background-position: top center
+              custom_fields:
+                location:
+                  - text-transform: capitalize
+                  - position: absolute
+                  - left: 4%
+                  - top: 4%
+                  - color: >-
+                      [[[ if (states["person.justin"].state == "not_home")
+                      return "#e45649"; else return "#50A14F"; ]]]
+                battery:
+                  - align-self: right
+                  - position: absolute
+                  - right: 4%
+                  - top: 4%
+                  - color: >-
+                      [[[ if (states["sensor.justin_phone_battery"].state <= 30)
+                      return "#e45649"; if
+                      (states["sensor.justin_phone_battery"].state <= 50) return
+                      "#ffa229"; else return "#50A14F"; ]]]
+            custom_fields:
+              location: |
+                [[[
+                  if (states["binary_sensor.justin_driving"].state == "on")
+                    return `<ha-icon
+                      icon="mdi:car-side"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.justin"].state == "not_home")
+                    return `<ha-icon
+                      icon="mdi:home-export-outline"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.justin"].state == "Lowes")
+                    return `<ha-icon
+                      icon="mdi:briefcase"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.justin"].state == "UC")
+                    return `<ha-icon
+                      icon="mdi:account-school"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  else 
+                    return `<ha-icon
+                      icon="mdi:home"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                ]]]
+              battery: |
+                [[[
+                  if (states["binary_sensor.justin_phone_charging"].state == "on")
+                    return `<ha-icon
+                      icon="mdi:battery-charging"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 10)
+                    return `<ha-icon
+                      icon="mdi:battery-10"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 20)
+                    return `<ha-icon
+                      icon="mdi:battery-20"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 30)
+                    return `<ha-icon
+                      icon="mdi:battery-30"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 40)
+                    return `<ha-icon
+                      icon="mdi:battery-40"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 50)
+                    return `<ha-icon
+                      icon="mdi:battery-50"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 60)
+                    return `<ha-icon
+                      icon="mdi:battery-60"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 70)
+                    return `<ha-icon
+                      icon="mdi:battery-70"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 80)
+                    return `<ha-icon
+                      icon="mdi:battery-80"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  if (states["sensor.justin_phone_battery"].state <= 90)
+                    return `<ha-icon
+                      icon="mdi:battery-90"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                  else
+                    return `<ha-icon
+                      icon="mdi:battery"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.justin_phone_battery'].state}%</span>`
+                ]]]
+          - type: custom:button-card
+            entity: person.katie
+            aspect_ratio: 2/1
+            show_name: false
+            show_icon: false
+            styles:
+              card:
+                - padding: 4%
+                - background-image: url("/local/katie_bitmoji_1.png")
+                - background-size: 50%
+                - background-repeat: no-repeat
+                - background-position: top center
+              custom_fields:
+                location:
+                  - text-transform: capitalize
+                  - position: absolute
+                  - left: 4%
+                  - top: 4%
+                  - color: >-
+                      [[[ if (states["person.katie"].state == "not_home") return
+                      "#e45649"; else return "#50A14F"; ]]]
+                battery:
+                  - align-self: right
+                  - position: absolute
+                  - right: 4%
+                  - top: 4%
+                  - color: >-
+                      [[[ if (states["sensor.katie_phone_battery"].state <= 30)
+                      return "#e45649"; if
+                      (states["sensor.katie_phone_battery"].state <= 50) return
+                      "#ffa229"; else return "#50A14F"; ]]]
+            custom_fields:
+              location: |
+                [[[
+                  if (states["binary_sensor.katie_driving"].state == "on")
+                    return `<ha-icon
+                      icon="mdi:car-side"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.katie"].state == "not_home")
+                    return `<ha-icon
+                      icon="mdi:home-export-outline"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  if (states["person.katie"].state == "Bridgetown Middle School")
+                    return `<ha-icon
+                      icon="mdi:account-school"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                  else 
+                    return `<ha-icon
+                      icon="mdi:home"
+                      style="width: 22px; height: 22px;">
+                      </ha-icon>`
+                ]]]
+              battery: |
+                [[[
+                  if (states["binary_sensor.katie_phone_charging"].state == "on")
+                    return `<ha-icon
+                      icon="mdi:battery-charging"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 10)
+                    return `<ha-icon
+                      icon="mdi:battery-10"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 20)
+                    return `<ha-icon
+                      icon="mdi:battery-20"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 30)
+                    return `<ha-icon
+                      icon="mdi:battery-30"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 40)
+                    return `<ha-icon
+                      icon="mdi:battery-40"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 50)
+                    return `<ha-icon
+                      icon="mdi:battery-50"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 60)
+                    return `<ha-icon
+                      icon="mdi:battery-60"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 70)
+                    return `<ha-icon
+                      icon="mdi:battery-70"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 80)
+                    return `<ha-icon
+                      icon="mdi:battery-80"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  if (states["sensor.katie_phone_battery"].state <= 90)
+                    return `<ha-icon
+                      icon="mdi:battery-90"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                  else
+                    return `<ha-icon
+                      icon="mdi:battery"
+                      style="width: 20px; height: 20px;"></ha-icon>
+                      <span>${states['sensor.katie_phone_battery'].state}%</span>`
+                ]]]
+      - type: map
+        entities:
+          - entity: person.jason
+          - entity: person.sherri
+          - entity: person.justin
+          - entity: person.katie
+          - entity: zone.home
+          - entity: zone.map_your_show
+          - entity: zone.tri_health
+          - entity: zone.lowes
+        aspect_ratio: '3:1'
+        dark_mode: true
+        style: |
+          ha-card { 
+            font-size: 10px;
+          }
+  - type: custom:mushroom-alarm-control-panel-card
+    entity: alarm_control_panel.adt_pulse
+    states:
+      - armed_home
+      - armed_away
+    layout: horizontal
+    fill_container: false
+    tap_action:
+      action: none
+    hold_action:
+      action: none
+    double_tap_action:
+      action: none
+  - type: custom:mushroom-climate-card
+    entity: climate.thermostat
+    layout: horizontal
+    primary_info: state
+    secondary_info: none
+    hvac_modes:
+      - heat
+      - cool
+      - 'off'
+    show_temperature_control: true
+    collapsible_controls: false
+    tap_action:
+      action: none
+    double_tap_action:
+      action: none
